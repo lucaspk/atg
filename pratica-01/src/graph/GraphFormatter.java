@@ -1,5 +1,5 @@
 package graph;
 
-public class GraphFormmater {
+public class GraphFormatter {
 
 }
