@@ -2,6 +2,12 @@
 
 Repositório dedicado às implementações relativas à disciplina em questão.
 
+# Atividade Prática 01
+
+O link para os arquivos referentes à atividade prática 01 estão [aqui](https://github.com/lucaspk/atg/tree/master/pratica-01).
+
+As decisões de implementação podem ser encontradas [aqui](https://github.com/lucaspk/atg/blob/master/pratica-01/Decis%C3%B5es.md)
+
 ## Direcionamentos para criação de casos de testes
 
 ### Testes Funcionais
