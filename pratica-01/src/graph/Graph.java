@@ -6,41 +6,29 @@ import java.util.List;
 
 public class Graph {
 	
-	private static int vertexNumber;
+	private int vertexNumber;
 		
-	private static List<Edge> edges = new ArrayList<Edge>();
+	private List<Edge> edges;
 	
-	public static Graph createGraph(final List<String> rawGraph) {
-		vertexNumber = getVertexNumber(rawGraph);
-		
-		setUpEdges(rawGraph);
-		
-		return new Graph();
-	}
-
-	private static void setUpEdges(final List<String> graph) {
-		int size = graph.size();
-		for (int i = 1; i < size; i++) {
-			String vertexes = graph.get(i);
-			String[] splitted = vertexes.split(" ");
-			
-			int v1 = Integer.parseInt(splitted[0]);
-			int v2 =Integer.parseInt(splitted[1]);
-			
-			edges.add(new Edge(v1, v2));
-		}
+	public Graph(){
+		this.edges = new ArrayList<Edge>();
 	}
 	
-	public static int getVertexNumber(final List<String> graph) {
-		return Integer.parseInt(graph.get(0));
+	public Graph(final RawGraph rawGraph){
+		this.edges = new ArrayList<Edge>();
+		this.vertexNumber = RawGraph.getVertexNumber(rawGraph);
 	}
-
-	public static int getEdgeNumber(final List<String> graph) {
-		return graph.size() - 1;
+	
+	public void setEdges(List<Edge> edges) {
+		this.edges = edges;
 	}
 	
 	public int getVertexNumber() {
 		return vertexNumber;
+	}
+	
+	public void setVertexNumber(final int vertexNumber) {
+		this.vertexNumber = vertexNumber;
 	}
 
 	public int getEdgeNumber() {

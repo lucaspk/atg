@@ -1,27 +1,35 @@
 package tests;
 
 import java.io.IOException;
-import java.util.List;
 
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import graph.*;
 
 public class GraphTest {
 	
-	private List<String> graph;
+	private String file = "src/sample_graph.txt";
+	private RawGraph rawGraph;
 	private Graph g;
 	
 	@Before
 	public void setUp() throws IOException {
-		String file = "src/sample_graph.txt";
-		graph = GraphReader.read(file);
-		
-		g = Graph.createGraph(graph);
+		rawGraph = GraphReader.read(file);	
+		g = GraphCreator.createGraph(rawGraph);
 	}
-
+	
+	@Test
+	public void testCreateRawGraph() {
+		Assert.assertEquals(5, rawGraph.getNumEdges());
+		Assert.assertEquals(5, rawGraph.getVertexNumber());
+	}
+	
 	@Test
 	public void testCreateGraph() {
+		g = GraphCreator.createGraph(rawGraph);
+		
 		Assert.assertEquals(5, g.getVertexNumber());
 		Assert.assertEquals(5, g.getEdgeNumber());
 				
@@ -29,4 +37,5 @@ public class GraphTest {
 		
 		Assert.assertEquals(expectedOutput, g.toString());
 	}
+	
 }

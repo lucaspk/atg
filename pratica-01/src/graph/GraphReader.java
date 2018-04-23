@@ -14,11 +14,11 @@ public class GraphReader {
     
 	private static List<String> graph = new ArrayList<String>();
 	
-	public static List<String> getSampleGraph() throws IOException {		
+	public static RawGraph getSampleGraph() throws IOException {		
 		return read(SAMPLE_GRAPH);
 	}
-	
-    public static List<String> read(final String graphFilePath) throws IOException {
+	    
+    public static RawGraph read(final String graphFilePath) throws IOException {
         File file = new File(graphFilePath);
         BufferedReader br = new BufferedReader(new FileReader(file));
         
@@ -26,7 +26,8 @@ public class GraphReader {
             graph.add(fileLine);
         }  
         br.close();
-  
-        return graph;
-    }            
+        
+        return new RawGraph(graph);  
+
+    }      
 }
