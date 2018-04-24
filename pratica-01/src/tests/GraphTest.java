@@ -11,24 +11,15 @@ import graph.*;
 public class GraphTest {
 	
 	private String file = "src/sample_graph.txt";
-	private RawGraph rawGraph;
 	private Graph g;
 	
 	@Before
-	public void setUp() throws IOException {
-		rawGraph = GraphReader.read(file);	
-		g = GraphCreator.createGraph(rawGraph);
-	}
-	
-	@Test
-	public void testCreateRawGraph() {
-		Assert.assertEquals(5, rawGraph.getNumEdges());
-		Assert.assertEquals(5, rawGraph.getVertexNumber());
+	public void setUp() throws IOException {	
+		g = GraphCreator.createGraph(file);
 	}
 	
 	@Test
 	public void testCreateGraph() {
-		g = GraphCreator.createGraph(rawGraph);
 		
 		Assert.assertEquals(5, g.getVertexNumber());
 		Assert.assertEquals(5, g.getEdgeNumber());

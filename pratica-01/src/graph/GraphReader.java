@@ -11,9 +11,7 @@ public class GraphReader {
     private final static String SAMPLE_GRAPH = "src/sample_graph.txt";
     
     private static String fileLine = "";
-    
-	private static List<String> graph = new ArrayList<String>();
-	
+    	
 	public static RawGraph getSampleGraph() throws IOException {		
 		return read(SAMPLE_GRAPH);
 	}
@@ -22,6 +20,7 @@ public class GraphReader {
         File file = new File(graphFilePath);
         BufferedReader br = new BufferedReader(new FileReader(file));
         
+        List<String> graph = new ArrayList<String>();
         while ((fileLine = br.readLine()) != null) {
             graph.add(fileLine);
         }  

@@ -14,11 +14,10 @@ public class Graph {
 		this.edges = new ArrayList<Edge>();
 	}
 	
-	public Graph(final RawGraph rawGraph){
-		this.edges = new ArrayList<Edge>();
-		this.vertexNumber = RawGraph.getVertexNumber(rawGraph);
+	public Graph(final List<Edge> edges){
+		this.edges = edges;
 	}
-	
+		
 	public void setEdges(List<Edge> edges) {
 		this.edges = edges;
 	}
@@ -33,6 +32,14 @@ public class Graph {
 
 	public int getEdgeNumber() {
 		return edges.size();
+	}
+	
+	public static int getVertexNumber(final Graph graph) {
+		return graph.getVertexNumber();
+	}
+
+	public static int getEdgeNumber(final Graph graph) {
+		return graph.getEdgeNumber();
 	}
 		
 	public List<Edge> edges() {

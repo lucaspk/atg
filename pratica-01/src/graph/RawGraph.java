@@ -14,15 +14,7 @@ public class RawGraph {
 	public RawGraph(final List<String> rawGraph) {
 		this.rawGraph = rawGraph;
 	}
-	
-	public static int getVertexNumber(final RawGraph graph) {
-		return graph.getVertexNumber();
-	}
-
-	public static int getEdgeNumber(final RawGraph graph) {
-		return graph.getNumEdges();
-	}
-	
+		
 	public List<String> getRawGraph() {
 		return rawGraph;
 	}
