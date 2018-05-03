@@ -1,5 +1,5 @@
 package graph;
-
+import graph.Edge;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,26 +14,11 @@ public class Graph {
 		this.edges = new ArrayList<Edge>();
 	}
 	
-	public Graph(final List<Edge> edges){
-		this.edges = edges;
-	}
-		
-	public void setEdges(List<Edge> edges) {
-		this.edges = edges;
-	}
-	
-	public int getVertexNumber() {
-		return vertexNumber;
-	}
-	
-	public void setVertexNumber(final int vertexNumber) {
+	public Graph(final int vertexNumber, final List<Edge> edges){
 		this.vertexNumber = vertexNumber;
+		this.edges = edges;
 	}
-
-	public int getEdgeNumber() {
-		return edges.size();
-	}
-	
+				
 	public static int getVertexNumber(final Graph graph) {
 		return graph.getVertexNumber();
 	}
@@ -41,9 +26,25 @@ public class Graph {
 	public static int getEdgeNumber(final Graph graph) {
 		return graph.getEdgeNumber();
 	}
-		
+
+	public int getVertexNumber() {
+		return vertexNumber;
+	}
+
+	public int getEdgeNumber() {
+		return edges.size();
+	}
+
 	public List<Edge> edges() {
 		return edges;
+	}
+	
+	public void setVertexNumber(final int vertexNumber) {
+		this.vertexNumber = vertexNumber;
+	}
+		
+	public void setEdges(List<Edge> edges) {
+		this.edges = edges;
 	}
 	
 	public Object[] toArray() {

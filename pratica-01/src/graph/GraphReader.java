@@ -12,21 +12,24 @@ public class GraphReader {
     
     private static String fileLine = "";
     	
-	public static RawGraph getSampleGraph() throws IOException {		
+	public static RawGraph getSampleGraph() {		
 		return read(SAMPLE_GRAPH);
 	}
 	    
-    public static RawGraph read(final String graphFilePath) throws IOException {
+    public static RawGraph read(final String graphFilePath) {
         File file = new File(graphFilePath);
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        
+        BufferedReader br;
         List<String> graph = new ArrayList<String>();
-        while ((fileLine = br.readLine()) != null) {
-            graph.add(fileLine);
-        }  
-        br.close();
-        
-        return new RawGraph(graph);  
-
-    }      
+		try {
+            br = new BufferedReader(new FileReader(file));
+            while ((fileLine = br.readLine()) != null) {
+                graph.add(fileLine);
+            }  
+            br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+        }     
+                
+        return new RawGraph(graph); 
+    }
 }

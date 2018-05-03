@@ -19,14 +19,20 @@ public class GraphTest {
 	}
 	
 	@Test
-	public void testCreateGraph() {
-		
-		Assert.assertEquals(5, g.getVertexNumber());
-		Assert.assertEquals(5, g.getEdgeNumber());
-				
+	public void testCreateGraph() {			
 		String expectedOutput = "[(1-2), (2-5), (5-3), (4-5), (1-5)]";
 		
 		Assert.assertEquals(expectedOutput, g.toString());
+	}
+
+	@Test
+	public void testGetVertexNumber() {
+		Assert.assertEquals(5, Graph.getVertexNumber(g));
+	}
+
+	@Test
+	public void testGetEdgeNumber() {
+		Assert.assertEquals(5, Graph.getEdgeNumber(g));
 	}
 	
 }

@@ -22,7 +22,7 @@ Foi seguido o Princípio de Responsabilidade Única que, segundo Robert C. Marti
 ### Entidades criadas
 
 Classe Edge:
-- Abstração para representar uma aresta em um grafo. Ela é útil para abstrairmos a lógica de fornecimento dos vértices que compõe determinada aresta. Além disso, torna mais fácil a manipulação, a ponto de utilizarmos uma List. Embora pudêssemos cogitar a possibilidade de uma estrutura de dicionário/hash, não seríamos capaz de ter um funcionamento apropriado no caso de um mapeamento chave-valor int->int, já que só podemos ter uma chave para cada número. Dessa forma, como vários vértices podem se relacionar entre si, teríamos que recorrer a um mapeamento chave-valor do tipo int->List<int>, que tornaria mais obscura a lógica da manipulação.
+- Abstração, nesse caso, um POJO - Plain Old Java Object - que tende a seguir o padrão JavaBean(não há nada de especial além dos getters e setters) para representar uma aresta em um grafo. Ela é útil para abstrairmos a lógica de fornecimento dos vértices que compõe determinada aresta. Além disso, torna mais fácil a manipulação em uma estrutura de dados, que no caso será uma ArrayList. Embora pudêssemos cogitar a possibilidade de uma estrutura de dicionário/hash, não seríamos capazes de ter um funcionamento apropriado no caso de um mapeamento chave-valor int->int, já que só podemos ter uma chave para cada número. Dessa forma, como vários vértices podem se relacionar entre si, teríamos que recorrer a um mapeamento chave-valor do tipo int->List<int>, que tornaria mais obscura a lógica da manipulação, além de trazer poucos benefícios práticos. Portanto, foi criado esse objeto.
 
 Classe Graph:
 - Abstração para representar um grafo.

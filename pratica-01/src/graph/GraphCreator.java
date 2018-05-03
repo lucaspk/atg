@@ -6,21 +6,26 @@ import java.util.List;
 
 public class GraphCreator {
 	
-	private static List<Edge> edges = new ArrayList<Edge>();
+	private static List<Edge> edges;
 	
-	public static Graph createGraph(final String filePath) throws IOException {
+	public static Graph createGraph(final String filePath) {
+		
 		RawGraph rawGraph = GraphReader.read(filePath);
 		
-		setUpEdges(rawGraph);
+		edges = getEdges(rawGraph);
 		
-		Graph g = new Graph(edges);
-		g.setVertexNumber(rawGraph.getVertexNumber());
+		int vertexNumber = rawGraph.getVertexNumber();
+
+		Graph g = new Graph(vertexNumber, edges);
 		
 		return g;
 	}
 		
-	private static void setUpEdges(final RawGraph rawGraph) {
+	private static List<Edge> getEdges(final RawGraph rawGraph) {
 		int size = rawGraph.getNumEdges();
+
+		List<Edge> edges = new ArrayList<Edge>();
+
 		for (int i = 1; i <= size; i++) {
 
 			String[] splitted = rawGraph.getEdgeSplittedBy(" ", i);
@@ -30,6 +35,7 @@ public class GraphCreator {
 			
 			edges.add(new Edge(v1, v2));
 		}
+		return edges;
 	}
 
 }
