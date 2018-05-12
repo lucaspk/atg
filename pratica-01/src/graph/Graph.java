@@ -1,17 +1,17 @@
 package graph;
-import graph.Edge;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+
+import java.util.*;
 
 public class Graph {
 	
 	private int vertexNumber;
 		
 	private List<Edge> edges;
+
+	boolean weighted;
 	
 	public Graph(){
-		this.edges = new ArrayList<Edge>();
+		this.edges = new ArrayList<>();
 	}
 	
 	public Graph(final int vertexNumber, final List<Edge> edges){
@@ -35,7 +35,7 @@ public class Graph {
 		return edges.size();
 	}
 
-	public List<Edge> edges() {
+	public List<Edge> getEdges() {
 		return edges;
 	}
 	
@@ -46,7 +46,15 @@ public class Graph {
 	public void setEdges(List<Edge> edges) {
 		this.edges = edges;
 	}
-	
+
+	public boolean isWeighted() {
+		return weighted;
+	}
+
+	public void setWeighted(boolean weighted) {
+		this.weighted = weighted;
+	}
+
 	public Object[] toArray() {
 		return edges.toArray();
 	}

@@ -9,13 +9,18 @@ import java.util.List;
 
 public class GraphReader {
     private final static String SAMPLE_GRAPH = "src/sample_graph.txt";
-    
+    private final static String SAMPLE_WEIGHTED_GRAPH = "src/sample_weighted_graph.txt";
+
     private static String fileLine = "";
     	
 	public static RawGraph getSampleGraph() {		
 		return read(SAMPLE_GRAPH);
 	}
-	    
+
+	public static RawGraph getSampleWeightedGraph() {
+		return read(SAMPLE_WEIGHTED_GRAPH);
+	}
+
     public static RawGraph read(final String graphFilePath) {
         File file = new File(graphFilePath);
         BufferedReader br;
