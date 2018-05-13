@@ -19,20 +19,6 @@ public class GraphTest {
 		g = GraphCreator.createGraph(file);
 		weightedG = GraphCreator.createWeightedGraph(file2);
 	}
-	
-	@Test
-	public void testCreateGraph() {			
-		String expectedOutput = "[(1-2): 0.0, (2-5): 0.0, (5-3): 0.0, (4-5): 0.0, (1-5): 0.0]";
-		
-		Assert.assertEquals(expectedOutput, g.toString());
-	}
-
-	@Test
-	public void testCreateWeightedGraph() {
-		String expectedOutput = "[(1-2): 0.1, (2-5): 0.2, (5-3): 5.0, (3-4): -9.5, (4-5): 2.3, (1-5): 1.0]";
-
-		Assert.assertEquals(expectedOutput, weightedG.toString());
-	}
 
 	@Test
 	public void testAdjacencyList() {
@@ -50,12 +36,12 @@ public class GraphTest {
 
 	@Test
 	public void testGetVertexNumber() {
-		Assert.assertEquals(5, Graph.getVertexNumber(g));
+		Assert.assertEquals(5, g.getVertexNumber());
 	}
 
 	@Test
 	public void testGetEdgeNumber() {
-		Assert.assertEquals(5, Graph.getEdgeNumber(g));
+		Assert.assertEquals(5, g.getEdgeNumber());
 	}
 	
 }

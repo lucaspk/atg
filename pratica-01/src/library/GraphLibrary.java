@@ -1,52 +1,52 @@
 package library;
 
-import graph.Graph;
+import graph.UnweightedGraph;
 import graph.GraphReader;
 
 public class GraphLibrary {
 
-	public Graph readGraph(String path) {
+	public UnweightedGraph readGraph(String path) {
 		GraphReader graphReader = new GraphReader();
 		return null;
 	}
 	
-	public Graph readWeightedGraph(String path) {
+	public UnweightedGraph readWeightedGraph(String path) {
 		return null;
 	}
 	
-	public int getVertexNumber(Graph graph) {
+	public int getVertexNumber(UnweightedGraph graph) {
 		return graph.getVertexNumber();
 	}
 	
-	public int getEdgeNumber(Graph graph) {
+	public int getEdgeNumber(UnweightedGraph graph) {
 		return graph.getEdgeNumber();
 	}
 	
-	public float getMeanEdge(Graph graph) {
+	public float getMeanEdge(UnweightedGraph graph) {
 		return 0;
 	}
 	
-	public String graphRepresentation(Graph graph,String type) {
+	public String graphRepresentation(UnweightedGraph graph, String type) {
 		return "";
 	}
 	
-	public String BFS(Graph graph, int v) {
+	public String BFS(UnweightedGraph graph, int v) {
 		return "";
 	}
 	
-	public String DFS(Graph graph, int v) {
+	public String DFS(UnweightedGraph graph, int v) {
 		return "";
 	}
 	
-	public boolean connected(Graph graph) {
+	public boolean connected(UnweightedGraph graph) {
 		return true;
 	}
 
-	public String shortestPath(Graph graph, int v1, int v2) {
+	public String shortestPath(UnweightedGraph graph, int v1, int v2) {
 		return "";
 	}
 	
-	public String mst(Graph graph) {
+	public String mst(UnweightedGraph graph) {
 		return "";
 	}
 	
