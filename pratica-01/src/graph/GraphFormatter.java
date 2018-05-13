@@ -6,4 +6,8 @@ public class GraphFormatter {
         return g.getAdjacencyList();
     }
 
+    public static String getAdjacencyMatrix(Graph g) {
+        return g.getAdjacencyMatrix();
+    }
+
 }

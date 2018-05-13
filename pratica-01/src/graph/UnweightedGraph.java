@@ -71,6 +71,30 @@ public class UnweightedGraph implements Graph {
 
 	@Override
 	public String getAdjacencyMatrix() {
-		return null;
+		NumberFormat nf = new DecimalFormat("##.##");
+		String result = "";
+
+		for (Integer v : this.adjacencyMap.keySet()) {
+			result += " " + v;
+		}
+		result += "\n";
+
+		for (Integer v1 : this.adjacencyMap.keySet()) {
+			result += v1;
+			for (Integer v2 : this.adjacencyMap.keySet()) {
+				if (this.adjacencyMap.get(v1).contains(v2)) {
+					result += " " + 1;
+				} else {
+					result += " " + 0;
+				}
+			}
+			result += "\n";
+		}
+
+		if (result.length() >= 2) {
+			result = result.substring(0, result.length() - 1);
+		}
+
+		return result;
 	}
 }

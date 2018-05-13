@@ -22,4 +22,19 @@ public class Pair implements Comparable {
         Pair p = (Pair) o;
         return vertex.compareTo(p.getVertex());
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Pair pair = (Pair) o;
+
+        return vertex.equals(pair.vertex);
+    }
+
+    @Override
+    public int hashCode() {
+        return vertex.hashCode();
+    }
 }

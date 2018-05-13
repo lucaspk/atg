@@ -53,9 +53,8 @@ public class WeightedGraph implements Graph {
 
     @Override
     public String getAdjacencyList() {
-        String result = "";
-
         NumberFormat nf = new DecimalFormat("##.##");
+        String result = "";
 
         for (Map.Entry<Integer, SortedSet<Pair>> entry : this.adjacencyMap.entrySet()) {
             result += entry.getKey() + " -";
@@ -74,6 +73,37 @@ public class WeightedGraph implements Graph {
 
     @Override
     public String getAdjacencyMatrix() {
-        return null;
+        NumberFormat nf = new DecimalFormat("##.##");
+        String result = "";
+
+        for (Integer v : this.adjacencyMap.keySet()) {
+            result += " " + v;
+        }
+        result += "\n";
+
+        boolean foundVertex = false;
+        for (Integer v1 : this.adjacencyMap.keySet()) {
+            result += v1;
+            for (Integer v2 : this.adjacencyMap.keySet()) {
+                foundVertex = false;
+                for (Pair p : this.adjacencyMap.get(v1)) {
+                    if (p.getVertex().equals(v2)) {
+                        result += " " + nf.format(p.getWeight());
+                        foundVertex = true;
+                        break;
+                    }
+                }
+                if (!foundVertex) {
+                    result += " " + 0;
+                }
+            }
+            result += "\n";
+        }
+
+        if (result.length() >= 2) {
+            result = result.substring(0, result.length() - 1);
+        }
+
+        return result;
     }
 }
