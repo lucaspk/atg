@@ -12,26 +12,14 @@ public class GraphTest {
 	
 	private String file = "src/sample_graph.txt";
 	private String file2 = "src/sample_weighted_graph.txt";
-	private Graph g, weightedG;
+	private String file3 = "src/sample_weighted_graph2.txt";
+	private Graph g, weightedG, weightedG2;
 	
 	@Before
 	public void setUp() throws IOException {	
 		g = GraphCreator.createGraph(file);
 		weightedG = GraphCreator.createWeightedGraph(file2);
-	}
-	
-	@Test
-	public void testCreateGraph() {			
-		String expectedOutput = "[(1-2): 0.0, (2-5): 0.0, (5-3): 0.0, (4-5): 0.0, (1-5): 0.0]";
-		
-		Assert.assertEquals(expectedOutput, g.toString());
-	}
-
-	@Test
-	public void testCreateWeightedGraph() {
-		String expectedOutput = "[(1-2): 0.1, (2-5): 0.2, (5-3): 5.0, (3-4): -9.5, (4-5): 2.3, (1-5): 1.0]";
-
-		Assert.assertEquals(expectedOutput, weightedG.toString());
+		weightedG2 = GraphCreator.createWeightedGraph(file3);
 	}
 
 	@Test
@@ -42,6 +30,13 @@ public class GraphTest {
 	}
 
 	@Test
+	public void testAdjacencyMatrix() {
+		String expectedOutput = " 1 2 3 4 5\n1 0 1 0 0 1\n2 1 0 0 0 1\n3 0 0 0 0 1\n4 0 0 0 0 1\n5 1 1 1 1 0";
+
+		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(g));
+	}
+
+	@Test
 	public void testWeightedAdjacencyList() {
 		String expectedOutput = "1 - 2(0.1) 5(1)\n2 - 1(0.1) 5(0.2)\n3 - 4(-9.5) 5(5)\n4 - 3(-9.5) 5(2.3)\n5 - 1(1) 2(0.2) 3(5) 4(2.3)";
 
@@ -49,13 +44,48 @@ public class GraphTest {
 	}
 
 	@Test
+	public void testWeightedAdjacencyMatrix() {
+		String expectedOutput = " 1 2 3 4 5\n1 0 0.1 0 0 1\n2 0.1 0 0 0 0.2\n3 0 0 0 -9.5 5\n4 0 0 -9.5 0 2.3\n5 1 0.2 5 2.3 0";
+
+		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(weightedG));
+	}
+
+	@Test
+	public void testWeightedShortestPathWithNegativeCicle() {
+		String expectedOutput = "O grafo contém um ciclo de pesos negativos.";
+
+		Assert.assertEquals(expectedOutput, weightedG.getShortestPath(1, 5));
+	}
+
+	@Test
+	public void testWeightedShortestPath() {
+		String expectedOutput = "1 2 5";
+
+		Assert.assertEquals(expectedOutput, weightedG2.getShortestPath(1, 5));
+	}
+
+	@Test
+	public void testUnweightedShortestPath() {
+		String expectedOutput = "1 5";
+
+		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 5));
+	}
+
+	@Test
+	public void testUnweightedShortestPath2() {
+		String expectedOutput = "1 5 3";
+
+		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 3));
+	}
+
+	@Test
 	public void testGetVertexNumber() {
-		Assert.assertEquals(5, Graph.getVertexNumber(g));
+		Assert.assertEquals(5, g.getVertexNumber());
 	}
 
 	@Test
 	public void testGetEdgeNumber() {
-		Assert.assertEquals(5, Graph.getEdgeNumber(g));
+		Assert.assertEquals(5, g.getEdgeNumber());
 	}
 	
 }

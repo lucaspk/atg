@@ -1,6 +1,5 @@
 package graph;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,28 +11,29 @@ public class GraphCreator {
 
 		RawGraph rawGraph = GraphReader.read(filePath);
 
-		edges = getEdges(rawGraph);
+		Graph g;
+		if (weighted) {
+			g = new WeightedGraph();
+		} else {
+			g = new UnweightedGraph();
+		}
 
-		int vertexNumber = rawGraph.getVertexNumber();
+		addEdges(g, rawGraph);
 
-		Graph g = new Graph(vertexNumber, edges);
-		g.setWeighted(weighted);
 
 		return g;
 	}
 
-	public static Graph createGraph(final String filePath) {
-		return createGraph(filePath, false);
+	public static UnweightedGraph createGraph(final String filePath) {
+		return (UnweightedGraph) createGraph(filePath, false);
 	}
 
-	public static Graph createWeightedGraph(final String filePath) {
-		return createGraph(filePath, true);
+	public static WeightedGraph createWeightedGraph(final String filePath) {
+		return (WeightedGraph) createGraph(filePath, true);
 	}
 
-	private static List<Edge> getEdges(final RawGraph rawGraph) {
+	private static void addEdges(Graph g, final RawGraph rawGraph) {
 		int size = rawGraph.getNumEdges();
-
-		List<Edge> edges = new ArrayList<Edge>();
 
 		for (int i = 1; i <= size; i++) {
 
@@ -43,12 +43,11 @@ public class GraphCreator {
 			int v2 = Integer.parseInt(splitted[1]);
 			if (splitted.length == 3) {
 				float w = Float.parseFloat(splitted[2]);
-				edges.add(new Edge(v1, v2, w));
+				g.addEdge(v1, v2, w);
 			} else {
-				edges.add(new Edge(v1, v2));
+				g.addEdge(v1, v2, 0);
 			}
 		}
-		return edges;
 	}
 
 }
