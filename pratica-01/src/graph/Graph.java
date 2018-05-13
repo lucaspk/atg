@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.Map;
+import java.util.SortedSet;
 
 public interface Graph {
 
@@ -17,4 +18,6 @@ public interface Graph {
     String getAdjacencyList();
 
     String getAdjacencyMatrix();
+
+    String getShortestPath(Integer v1, Integer v2);
 }

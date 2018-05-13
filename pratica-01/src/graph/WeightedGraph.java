@@ -2,10 +2,7 @@ package graph;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class WeightedGraph implements Graph {
 
@@ -15,6 +12,10 @@ public class WeightedGraph implements Graph {
 
     public WeightedGraph() {
         this.adjacencyMap = new TreeMap<>();
+    }
+
+    public SortedSet<Pair> getAdjacents(Integer v) {
+        return this.adjacencyMap.get(v);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class WeightedGraph implements Graph {
 
     @Override
     public int getVertexNumber() {
-        return 0;
+        return this.adjacencyMap.size();
     }
 
     @Override
@@ -102,6 +103,63 @@ public class WeightedGraph implements Graph {
 
         if (result.length() >= 2) {
             result = result.substring(0, result.length() - 1);
+        }
+
+        return result;
+    }
+
+    @Override
+    public String getShortestPath(Integer source, Integer dest) {
+        String result = "";
+
+        // This implementation takes in a graph, represented as
+        // lists of vertices and edges, and fills two arrays
+        // (distance and predecessor) with shortest-path
+        // (less cost/distance/metric) information
+
+        // Step 1: initialize graph
+        Map<Integer, VertexInfo> vertexInfoMap = new TreeMap<>();
+        for (Integer v : this.adjacencyMap.keySet()) {
+            vertexInfoMap.put(v, new VertexInfo(null, Float.POSITIVE_INFINITY));
+        }
+
+        vertexInfoMap.get(source).distance = 0; // The weight is zero at the source
+
+        // Step 2: relax edges repeatedly
+        for (int i = 1; i < this.getVertexNumber(); i++) {
+            for (Integer v : this.adjacencyMap.keySet()) {
+                for (Pair e : this.adjacencyMap.get(v)) {
+                    if (vertexInfoMap.get(e.getVertex()).distance + e.getWeight() < vertexInfoMap.get(v).distance) {
+                        vertexInfoMap.get(v).distance = vertexInfoMap.get(e.getVertex()).distance + e.getWeight();
+                        vertexInfoMap.get(v).predecessor = e.getVertex();
+                    }
+                }
+            }
+        }
+
+        // Step 3: check for negative-weight cycles
+
+        for (Integer v : this.adjacencyMap.keySet()) {
+            for (Pair e : this.adjacencyMap.get(v)) {
+                if (vertexInfoMap.get(e.getVertex()).distance + e.getWeight() < vertexInfoMap.get(v).distance) {
+                    return result + "O grafo contém um ciclo de pesos negativos.";
+                }
+            }
+        }
+
+        // Build result
+        Integer currentVertex = dest;
+        ArrayList<Integer> out = new ArrayList<>();
+        while (currentVertex != null) {
+            out.add(currentVertex);
+            currentVertex = vertexInfoMap.get(currentVertex).predecessor;
+        }
+        for (int i = out.size() - 1; i >= 0; i--) {
+            result += out.get(i) + " ";
+        }
+
+        if (result.length() >= 1) {
+            result = result.substring(0, result.length()-1);
         }
 
         return result;
