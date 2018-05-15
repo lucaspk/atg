@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 
-public class UnweightedGraph implements Graph {
+public class UnweightedGraph implements IGraph {
 	
 	private Map<Integer, SortedSet<Integer>> adjacencyMap;
 

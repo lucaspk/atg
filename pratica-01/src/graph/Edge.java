@@ -3,14 +3,14 @@ package graph;
 public class Edge {
 	private int v1;
 	private int v2;
-	private float weight;
+	private Double weight;
 	
 	public Edge(final int v1, final int v2) {
 		this.v1 = v1;
 		this.v2 = v2;
 	}
 
-	public Edge(final int v1, final int v2, float weight) {
+	public Edge(final int v1, final int v2, Double weight) {
 		this.v1 = v1;
 		this.v2 = v2;
 		this.weight = weight;
@@ -32,11 +32,11 @@ public class Edge {
 		this.v2 = v2;
 	}
 
-	public float getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(float weight) {
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
 

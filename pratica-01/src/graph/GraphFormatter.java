@@ -2,11 +2,11 @@ package graph;
 
 public class GraphFormatter {
 
-    public static String getAdjacencyList(Graph g) {
+    public static String getAdjacencyList(IGraph g) {
         return g.getAdjacencyList();
     }
 
-    public static String getAdjacencyMatrix(Graph g) {
+    public static String getAdjacencyMatrix(IGraph g) {
         return g.getAdjacencyMatrix();
     }
 

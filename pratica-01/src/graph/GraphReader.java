@@ -24,17 +24,17 @@ public class GraphReader {
     public static RawGraph read(final String graphFilePath) {
         File file = new File(graphFilePath);
         BufferedReader br;
-        List<String> graph = new ArrayList<String>();
+        List<String> fileLines = new ArrayList<String>();
 		try {
             br = new BufferedReader(new FileReader(file));
             while ((fileLine = br.readLine()) != null) {
-                graph.add(fileLine);
+            	fileLines.add(fileLine);
             }  
             br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
         }     
                 
-        return new RawGraph(graph); 
+        return new RawGraph(fileLines); 
     }
 }

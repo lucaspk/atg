@@ -1,23 +1,46 @@
 package graph;
+import java.util.*;
 
-import java.util.Map;
-import java.util.SortedSet;
+public class Graph {
+		
+		private Map<Integer, Set<Edge>> nodeMap;
 
-public interface Graph {
+		private int vertexNumber;
+		
+		public Graph() {
+			nodeMap = new HashMap();
+		}
 
-    Map getMap();
+		public void addEdge(Integer vertex, Edge edge) {
+			
+		}
+		
+		public int getVertexNumber() {
+			return vertexNumber;
+		}
 
-    void addEdge(int v1, int v2, float weight);
+		
+		public int getEdgeNumber() {
+			return nodeMap.size();
+		}
 
-    int getVertexNumber();
+		
+		public float getMeanEdge() {
+			return 0;
+		}
 
-    int getEdgeNumber();
+		
+		public String getAdjacencyList() {
+			return "";
+		}
 
-    float getMeanEdge();
+		public String getAdjacencyMatrix() {
+			return "";
 
-    String getAdjacencyList();
+		}
 
-    String getAdjacencyMatrix();
-
-    String getShortestPath(Integer v1, Integer v2);
+		public String getShortestPath(Integer source, Integer dest) {
+			return "";
+		}
 }
+
