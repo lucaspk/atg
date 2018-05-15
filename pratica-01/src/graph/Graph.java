@@ -4,24 +4,28 @@ import java.util.*;
 public class Graph {
 		
 		private Map<Integer, Set<Edge>> nodeMap;
-
-		private int vertexNumber;
 		
 		public Graph() {
-			nodeMap = new HashMap();
+			nodeMap = new TreeMap<>();
 		}
 
 		public void addEdge(Integer vertex, Edge edge) {
-			
+			if (nodeMap.containsKey(vertex)) {
+				nodeMap.get(vertex).add(edge);
+			} else {
+				Set<Edge> edgesSet = new TreeSet<Edge>();
+				edgesSet.add(edge);
+				nodeMap.put(vertex, edgesSet);
+			}
 		}
 		
 		public int getVertexNumber() {
-			return vertexNumber;
+			return nodeMap.keySet().size();
 		}
 
 		
 		public int getEdgeNumber() {
-			return nodeMap.size();
+			return nodeMap.values().size();
 		}
 
 		
