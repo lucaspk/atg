@@ -11,7 +11,7 @@ public class GraphCreator {
 	
 	private static Graph createGraphAux(final RawGraph rawGraph) {
 		int size = rawGraph.getNumEdges();
-		
+		System.out.println(size);
 		Graph graph = new Graph();
 		
 		for (int i = 1; i <= size; i++) {
@@ -28,6 +28,7 @@ public class GraphCreator {
 				edge.setWeight(weight);
 			}
 			graph.addEdge(v1, edge);
+			graph.addEdge(v2, edge);
 		}
 		
 		return graph;
