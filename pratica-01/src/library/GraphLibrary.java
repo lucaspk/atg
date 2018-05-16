@@ -3,6 +3,7 @@ package library;
 import graph.UnweightedGraph;
 import graph.Graph;
 import graph.GraphReader;
+import graph.GraphSearcher;
 
 public class GraphLibrary {
 
@@ -32,7 +33,7 @@ public class GraphLibrary {
 	}
 	
 	public String BFS(Graph graph, Integer v) {
-		return "";
+		return GraphSearcher.BFS(graph, v);
 	}
 	
 	public String DFS(Graph graph, Integer v) {

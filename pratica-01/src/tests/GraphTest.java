@@ -88,4 +88,9 @@ public class GraphTest {
 		Assert.assertEquals(5, g.getEdgeNumber());
 	}
 	
+	@Test
+	public void testBFS() {
+		System.out.println(GraphSearcher.BFS(g, 1));
+	}
+	
 }

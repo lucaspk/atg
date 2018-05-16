@@ -3,7 +3,7 @@ package graph;
 public class Vertex implements Comparable{
 
 	private Integer value;
-	private boolean visited = false; // Variable used for generate DFS
+	private boolean visited = false;
 	
 	public Vertex(Integer value) {
 		this.value = value;
@@ -13,7 +13,7 @@ public class Vertex implements Comparable{
 		return value;
 	}
 	
-	public boolean wasVisited() { 
+	public boolean isVisited() { 
 		return visited;
 	}
 	

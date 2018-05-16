@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Graph {
 		
-		private Map<Vertex, Set<Edge>> nodeMap;
+		private Map<Vertex, SortedSet<Edge>> nodeMap;
 		
 		public Graph() {
 			nodeMap = new HashMap<>();
@@ -13,10 +13,14 @@ public class Graph {
 			if (nodeMap.containsKey(vertex)) {
 				nodeMap.get(vertex).add(edge);
 			} else {
-				Set<Edge> edgesSet = new TreeSet<Edge>();
+				SortedSet<Edge> edgesSet = new TreeSet<Edge>();
 				edgesSet.add(edge);
 				nodeMap.put(vertex, edgesSet);
 			}
+		}
+		
+		public Map<Vertex, SortedSet<Edge>> getNodeMap() {
+			return nodeMap;
 		}
 		
 		public int getVertexNumber() {
