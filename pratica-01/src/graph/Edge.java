@@ -1,34 +1,34 @@
 package graph;
 
 public class Edge implements Comparable {
-	private Integer v1;
-	private Integer v2;
+	private Vertex v1;
+	private Vertex v2;
 	private Double weight;
 	
-	public Edge(final Integer v1, final Integer v2) {
+	public Edge(final Vertex v1, final Vertex v2) {
 		this.v1 = v1;
 		this.v2 = v2;
 	}
 
-	public Edge(final Integer v1, final Integer v2, Double weight) {
+	public Edge(final Vertex v1, final Vertex v2, Double weight) {
 		this.v1 = v1;
 		this.v2 = v2;
 		this.weight = weight;
 	}
 
-	public Integer getV1() {
+	public Vertex getV1() {
 		return v1;
 	}
 
-	public Integer getV2() {
+	public Vertex getV2() {
 		return v2;
 	}
 	
-	public void setV1(int v1) {
+	public void setV1(Vertex v1) {
 		this.v1 = v1;
 	}
 	
-	public void setV2(int v2) {
+	public void setV2(Vertex v2) {
 		this.v2 = v2;
 	}
 
@@ -45,23 +45,33 @@ public class Edge implements Comparable {
         Edge edge = (Edge) o;
         if (v1.equals(edge.getV1()) && v2.equals(edge.getV2())) {
         	return 0;
-        } else {
-        	return 1;
         }
+        return 1;
     }
 	
     @Override
     public boolean equals(Object o) {
+    	
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Edge edge = (Edge) o;
 
-        return v1.equals(edge.getV1());
+        if (this.equals(edge)) {
+        } else {
+        	System.out.println("Nem");
+        }
+
+        return this.equals(edge);
     }
 
 	@Override
 	public String toString() {
-		return "(" + v1 + "-" + v2 + "): " + weight;
+		return "(" + v1.getValue() + "-" + v2.getValue() + "): " + weight;
 	}
+	
+    @Override
+    public int hashCode() {
+        return v1.hashCode() + v2.hashCode();
+    }
 }

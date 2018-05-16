@@ -11,15 +11,14 @@ public class GraphCreator {
 	
 	private static Graph createGraphAux(final RawGraph rawGraph) {
 		int size = rawGraph.getNumEdges();
-		System.out.println(size);
 		Graph graph = new Graph();
 		
 		for (int i = 1; i <= size; i++) {
 
 			String[] splitted = rawGraph.getEdgeSplittedBy(" ", i);
 			
-			int v1 = Integer.parseInt(splitted[0]);
-			int v2 = Integer.parseInt(splitted[1]);
+			Vertex v1 = new Vertex(Integer.parseInt(splitted[0]));
+			Vertex v2 = new Vertex(Integer.parseInt(splitted[1]));
 
 			Edge edge = new Edge(v1, v2);
 			

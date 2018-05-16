@@ -3,13 +3,13 @@ import java.util.*;
 
 public class Graph {
 		
-		private Map<Integer, Set<Edge>> nodeMap;
+		private Map<Vertex, Set<Edge>> nodeMap;
 		
 		public Graph() {
-			nodeMap = new TreeMap<>();
+			nodeMap = new HashMap<>();
 		}
 
-		public void addEdge(Integer vertex, Edge edge) {
+		public void addEdge(Vertex vertex, Edge edge) {
 			if (nodeMap.containsKey(vertex)) {
 				nodeMap.get(vertex).add(edge);
 			} else {
@@ -20,6 +20,7 @@ public class Graph {
 		}
 		
 		public int getVertexNumber() {
+			System.out.println(nodeMap.keySet());
 			return nodeMap.keySet().size();
 		}
 
@@ -30,7 +31,7 @@ public class Graph {
 
 		
 		public float getMeanEdge() {
-			return 0;
+			return (2 * getEdgeNumber()) / getVertexNumber();
 		}
 
 		
@@ -40,7 +41,6 @@ public class Graph {
 
 		public String getAdjacencyMatrix() {
 			return "";
-
 		}
 
 		public String getShortestPath(Integer source, Integer dest) {
