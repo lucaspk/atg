@@ -43,6 +43,10 @@ public class Graph {
 
 		}
 
+		public Set<Edge> getAdjacents(Integer v) {
+			return this.nodeMap.get(v);
+		}
+
 		public String getShortestPath(Integer source, Integer dest) {
 			return "";
 		}

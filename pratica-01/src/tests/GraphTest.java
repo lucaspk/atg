@@ -21,6 +21,30 @@ public class GraphTest {
 		weightedG = GraphCreator.createGraph(file2);
 		weightedG2 = GraphCreator.createGraph(file3);
 	}
+	
+	@Test
+	public void testDFSLength() {
+		int expectedOutputLength = 45;
+		
+		Integer firstVertex = 1;
+		int dfsOutputLength = GraphSearcher.dfs(g, firstVertex).length();
+		
+		Assert.assertEquals(expectedOutputLength, dfsOutputLength);
+	}
+	
+	@Test
+	public void testDFS() {
+		String expectedOutput = "1 - - 02 - 1 15 - 2 23 - 5 34 - 5 3";
+		
+		Integer firstVertex = 1;
+		String dfsOutput = GraphSearcher.dfs(g, firstVertex);
+		
+		StringBuilder output = new StringBuilder();
+    	for (String string : dfsOutput.split("\n")) {
+			output.append(string.trim());
+		}
+		Assert.assertEquals(expectedOutput, output.toString());
+	}
 
 	@Test
 	public void testAdjacencyList() {
