@@ -46,5 +46,10 @@ public class Graph {
 		public String getShortestPath(Integer source, Integer dest) {
 			return "";
 		}
+
+		public Map<Integer, Set<Edge>> getNodeMap() {
+			return nodeMap;
+		}
+		
 }
 

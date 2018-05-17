@@ -43,11 +43,7 @@ public class Edge implements Comparable {
 	@Override
     public int compareTo(Object o) {
         Edge edge = (Edge) o;
-        if (v1.equals(edge.getV1()) && v2.equals(edge.getV2())) {
-        	return 0;
-        } else {
-        	return 1;
-        }
+        return this.weight.compareTo(edge.getWeight());
     }
 	
     @Override
