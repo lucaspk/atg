@@ -72,13 +72,6 @@ public class GraphTest {
 	}
 
 	@Test
-	public void testUnweightedShortestPath2() {
-		String expectedOutput = "1 5 3";
-
-		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 3));
-	}
-
-	@Test
 	public void testGetVertexNumber() {
 		Assert.assertEquals(5, g.getVertexNumber());
 	}
@@ -86,6 +79,38 @@ public class GraphTest {
 	@Test
 	public void testGetEdgeNumber() {
 		Assert.assertEquals(5, g.getEdgeNumber());
+	}
+	
+	@Test
+	public void testBFS() {
+		//System.out.println(GraphSearcher.bfs(weightedG, 1));
+	}
+	
+	@Test
+	public void testDFS() {
+		//System.out.println(GraphSearcher.dfs(g, 1));
+	}
+	
+	@Test
+	public void testMST() {
+		Assert.assertEquals(GraphTree.mst(g), "1 - 0 -\n" + 
+				"2 - 1 1\n" + 
+				"5 - 1 1\n" + 
+				"3 - 2 5\n" + 
+				"4 - 2 5\n" + 
+				"");
+		Assert.assertEquals(GraphTree.mst(weightedG), "3 - 0 -\n" + 
+				"4 - 1 3\n" + 
+				"5 - 2 4\n" + 
+				"2 - 3 5\n" + 
+				"1 - 4 2\n" + 
+				"");
+		Assert.assertEquals(GraphTree.mst(weightedG2), "4 - 0 -\n" + 
+				"5 - 1 4\n" + 
+				"2 - 2 5\n" + 
+				"3 - 2 5\n" + 
+				"1 - 3 2\n" + 
+				"");
 	}
 	
 }

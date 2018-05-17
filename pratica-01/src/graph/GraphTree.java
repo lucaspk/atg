@@ -9,6 +9,9 @@ import java.util.Set;
 public class GraphTree {
 
 	public static String mst(Graph graph) {
+		//falta checar se é conectado antes de executar 'connected(graph)'
+		
+		Graph resultGraph = new Graph();
 		
 		Map<Integer, Set<Edge>> nodeMap = new HashMap<Integer, Set<Edge>>();
 		nodeMap = graph.getNodeMap();
@@ -20,12 +23,20 @@ public class GraphTree {
 			forest.add(temp);
 		}
 		
-		List<Edge> edges = new ArrayList<Edge>();
-		for (Set<Edge> s : nodeMap.values()) {
-			edges.addAll(s);
+		if (!graph.isWeighted()) {
+			return GraphSearcher.bfs(graph, forest.get(0).get(0));
 		}
 		
-		edges.sort(Edge::compareTo);
+		List<Edge> edges = new ArrayList<Edge>();
+		for (Set<Edge> s : nodeMap.values()) {
+			for (Edge edge : s) {
+				if (!edges.contains(edge)) {
+					edges.add(edge);
+				}
+			}
+		}
+		
+		edges.sort(Edge::compareTo2);
 		Edge minWeightEdge;
 		
 		ArrayList<Edge> forestEdges = new ArrayList<Edge>();
@@ -60,14 +71,12 @@ public class GraphTree {
 				tree1.addAll(tree2);
 				forest.add(tree1);
 				forestEdges.add(minWeightEdge);
+				resultGraph.addEdge(minWeightEdge.getV1(), minWeightEdge);
+				resultGraph.addEdge(minWeightEdge.getV2(), minWeightEdge);
 			}
 		}
-		
-		return treeToString(forestEdges);
-	}
-	
-	private static String treeToString (ArrayList<Edge> mst) {
-		return "";
+
+		return GraphSearcher.bfs(resultGraph, forest.get(0).get(0));
 	}
 	
 }

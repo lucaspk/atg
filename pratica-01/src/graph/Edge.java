@@ -43,7 +43,22 @@ public class Edge implements Comparable {
 	@Override
     public int compareTo(Object o) {
         Edge edge = (Edge) o;
-        return this.weight.compareTo(edge.getWeight());
+        if (v1.equals(edge.getV1()) && v2.equals(edge.getV2())) {
+        	return 0;
+        } else {
+        	return 1;
+        }
+    }
+	
+    public int compareTo2(Object o) {
+        Edge edge = (Edge) o;
+        if (this.weight > edge.getWeight()) {
+        	return 1;
+        } else if (this.weight < edge.getWeight()) {
+        	return -1;
+        } else {
+        	return 0;
+        }
     }
 	
     @Override
@@ -53,7 +68,7 @@ public class Edge implements Comparable {
 
         Edge edge = (Edge) o;
 
-        return v1.equals(edge.getV1());
+        return v1.equals(edge.getV1()) && v2.equals(edge.getV2()) && weight.equals(edge.getWeight());
     }
 
 	@Override

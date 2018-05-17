@@ -28,6 +28,7 @@ public class GraphCreator {
 				edge.setWeight(weight);
 			}
 			graph.addEdge(v1, edge);
+			graph.addEdge(v2, edge);
 		}
 		
 		return graph;

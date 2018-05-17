@@ -8,7 +8,7 @@ public class Graph {
 		public Graph() {
 			nodeMap = new TreeMap<>();
 		}
-
+		
 		public void addEdge(Integer vertex, Edge edge) {
 			if (nodeMap.containsKey(vertex)) {
 				nodeMap.get(vertex).add(edge);
@@ -43,12 +43,30 @@ public class Graph {
 
 		}
 
+		public Set<Edge> getAdjacents(Integer v) {
+			return this.nodeMap.get(v);
+		}
+
 		public String getShortestPath(Integer source, Integer dest) {
 			return "";
 		}
 
 		public Map<Integer, Set<Edge>> getNodeMap() {
 			return nodeMap;
+		}
+		
+		public boolean isWeighted() {
+			for (Set<Edge> s : nodeMap.values()) {
+				for (Edge edge : s) {
+					if (edge.getWeight() != null) {
+						return true;
+					}
+					else {
+						break;
+					}
+				}
+			}
+			return false;
 		}
 		
 }
