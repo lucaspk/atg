@@ -21,30 +21,6 @@ public class GraphTest {
 		weightedG = GraphCreator.createGraph(file2);
 		weightedG2 = GraphCreator.createGraph(file3);
 	}
-	
-	@Test
-	public void testDFSLength() {
-		int expectedOutputLength = 45;
-		
-		Integer firstVertex = 1;
-		int dfsOutputLength = GraphSearcher.dfs(g, firstVertex).length();
-		
-		Assert.assertEquals(expectedOutputLength, dfsOutputLength);
-	}
-	
-	@Test
-	public void testDFS() {
-		String expectedOutput = "1 - - 02 - 1 15 - 2 23 - 5 34 - 5 3";
-		
-		Integer firstVertex = 1;
-		String dfsOutput = GraphSearcher.dfs(g, firstVertex);
-		
-		StringBuilder output = new StringBuilder();
-    	for (String string : dfsOutput.split("\n")) {
-			output.append(string.trim());
-		}
-		Assert.assertEquals(expectedOutput, output.toString());
-	}
 
 	@Test
 	public void testAdjacencyList() {
@@ -96,13 +72,6 @@ public class GraphTest {
 	}
 
 	@Test
-	public void testUnweightedShortestPath2() {
-		String expectedOutput = "1 5 3";
-
-		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 3));
-	}
-
-	@Test
 	public void testGetVertexNumber() {
 		Assert.assertEquals(5, g.getVertexNumber());
 	}
@@ -110,6 +79,16 @@ public class GraphTest {
 	@Test
 	public void testGetEdgeNumber() {
 		Assert.assertEquals(5, g.getEdgeNumber());
+	}
+	
+	@Test
+	public void testBFS() {
+		System.out.println(GraphSearcher.bfs(g, 1));
+	}
+	
+	@Test
+	public void testDFS() {
+		//System.out.println(GraphSearcher.dfs(g, 1));
 	}
 	
 }

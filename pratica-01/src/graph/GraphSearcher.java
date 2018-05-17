@@ -1,5 +1,7 @@
 package graph;
 
+import java.util.LinkedList;
+
 public class GraphSearcher {
 
     final static String TREE_FORMAT = "%s - %s %s" + System.lineSeparator();
@@ -34,19 +36,51 @@ public class GraphSearcher {
                 dfsTree.append(dfsAux(graph, vertexInt, firstVertex, depth + 1, visited));
             }
         }        
-        
         return dfsTree.toString();
-	}
-    
-    public static void main(String[] args) {
-    	String file = "src/sample_graph.txt";
-    	
-    	Graph g = GraphCreator.createGraph(file);
-    	
-    	System.out.println(GraphSearcher.dfs(g, 1));
-    	
-	}
+	}    
 
-    
+    public static String bfs(final Graph graph, final Integer firstVertex) {
+        StringBuilder bfsTree = new StringBuilder();
 
+    	boolean[] visited = new boolean[graph.getVertexNumber() + 2];
+        
+        LinkedList<Integer> queue = new LinkedList<Integer>();
+
+        int level = 0;
+        
+        visited[firstVertex] = true;
+        queue.add(firstVertex);
+        
+        bfsTree.append(firstVertex + " - " + level + " -\n");
+        
+        while (queue.size() != 0) {
+
+        	int head = queue.poll();
+
+            boolean auxVisited = false;
+            
+            for (Edge edge : graph.getAdjacents(head)) {
+
+            	int adjacent;
+            	if (edge.getV1() == head) {
+            		adjacent = edge.getV2();
+            	} else {
+            		adjacent = edge.getV1();
+            	}
+                
+                if (!visited[adjacent]) {
+                	if(!auxVisited) { 
+                		level += 1;
+                		auxVisited = true;
+                	}
+
+                	bfsTree.append(adjacent + " - " + level + " " + head + "\n");
+
+                    visited[adjacent] = true;
+                    queue.add(adjacent);
+                }
+            }
+        }
+        return bfsTree.toString();
+    }    
 }
