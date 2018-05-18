@@ -43,6 +43,10 @@ public class Graph {
 
 		}
 
+		Integer getAVertex(){
+			return nodeMap.keySet().iterator().next();
+		}
+
 		public Set<Edge> getAdjacents(Integer v) {
 			return this.nodeMap.get(v);
 		}

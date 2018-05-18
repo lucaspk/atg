@@ -90,5 +90,11 @@ public class GraphTest {
 	public void testDFS() {
 		//System.out.println(GraphSearcher.dfs(g, 1));
 	}
-	
+
+	@Test
+	public void testConnectivity(){
+		Assert.assertEquals(true, GraphConnectivity.isConnected(g));
+		Assert.assertEquals(true, GraphConnectivity.isConnected(weightedG));
+		Assert.assertEquals(true, GraphConnectivity.isConnected(weightedG2));
+	}
 }
