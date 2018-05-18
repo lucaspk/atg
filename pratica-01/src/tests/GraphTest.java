@@ -26,7 +26,7 @@ public class GraphTest {
 	public void testAdjacencyList() {
 		String expectedOutput = "1 - 2 5\n2 - 1 5\n3 - 5\n4 - 5\n5 - 1 2 3 4";
 
-		//Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(g));
+		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(g));
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class GraphTest {
 	public void testWeightedAdjacencyList() {
 		String expectedOutput = "1 - 2(0,1) 5(1)\n2 - 1(0,1) 5(0,2)\n3 - 4(-9,5) 5(5)\n4 - 3(-9,5) 5(2,3)\n5 - 1(1) 2(0,2) 3(5) 4(2,3)";
 
-		//Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(weightedG));
+		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(weightedG));
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class GraphTest {
 	
 	@Test
 	public void testDFS() {
-		//System.out.println(GraphSearcher.dfs(g, 1));
+		System.out.println(GraphSearcher.dfs(g, 1));
 	}
 
 	@Test
