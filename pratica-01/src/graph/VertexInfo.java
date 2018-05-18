@@ -8,6 +8,14 @@ public class VertexInfo {
         this.predecessor = predecessor;
         this.distance = distance;
     }
+    
+    public double getDistance() {
+    	return distance;
+    }
+    
+    public void setDistance(double distance) {
+    	this.distance = distance;
+    }
 
     @Override
     public String toString() {

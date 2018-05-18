@@ -1,6 +1,10 @@
 package graph;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 public class GraphSearcher {
 
@@ -40,7 +44,8 @@ public class GraphSearcher {
 	}    
 
     public static String bfs(final Graph graph, final Integer firstVertex) {
-        StringBuilder bfsTree = new StringBuilder();
+        
+        List<String> test = new ArrayList();
 
     	boolean[] visited = new boolean[graph.getVertexNumber() + 2];
         
@@ -51,8 +56,8 @@ public class GraphSearcher {
         visited[firstVertex] = true;
         queue.add(firstVertex);
         
-        bfsTree.append(firstVertex + " - " + level + " -\n");
-        
+        test.add(firstVertex + " - " + level + " -");
+
         while (queue.size() != 0) {
 
         	int head = queue.poll();
@@ -74,13 +79,22 @@ public class GraphSearcher {
                 		auxVisited = true;
                 	}
 
-                	bfsTree.append(adjacent + " - " + level + " " + head + "\n");
-
+                    test.add(adjacent + " - " + level + " " + head);
+                    
                     visited[adjacent] = true;
                     queue.add(adjacent);
                 }
             }
         }
-        return bfsTree.toString();
-    }    
+        Collections.sort(test);
+        return DFSFormattedResult(test);
+    }
+    
+    private static String DFSFormattedResult(List<String> array) {
+    	String result = array.get(0);
+    	for (int i = 1; i < array.size(); i++) {
+			result += "\n" + array.get(i);
+		}
+    	return result;
+    }
 }

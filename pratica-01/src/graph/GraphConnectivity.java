@@ -55,7 +55,7 @@ public class GraphConnectivity {
 			vertexInfoMap.put(v, new VertexInfo(null, Double.POSITIVE_INFINITY));
 		}
 
-		vertexInfoMap.get(source).distance = 0.0; // The weight is zero at the source
+		vertexInfoMap.get(source).setDistance(0.0); // The weight is zero at the source
 
 		// Step 2: relax edges repeatedly
 			for (int i = 1; i < g.getVertexNumber(); i++) {
@@ -74,6 +74,7 @@ public class GraphConnectivity {
 //
 //						}
 						relax(u.getV1(), u.getV2(), u.getWeight(), vertexInfoMap);
+						relax(u.getV2(), u.getV1(), u.getWeight(), vertexInfoMap);
 
 					}
 				}
@@ -82,7 +83,7 @@ public class GraphConnectivity {
 		if (g.isWeighted()) {
 			for (Integer v : g.getNodeMap().keySet()) {
 				for (Edge e : g.getNodeMap().get(v)) {
-					if (vertexInfoMap.get(e.getV1()).distance + e.getWeight() < vertexInfoMap.get(v).distance) {
+					if (vertexInfoMap.get(e.getV1()).getDistance() + e.getWeight() < vertexInfoMap.get(v).getDistance()) {
 						return result + "O grafo contém um ciclo de pesos negativos.";
 					}
 				}
@@ -123,7 +124,7 @@ public class GraphConnectivity {
 			vertexInfoMap.put(v, new VertexInfo(null, Float.POSITIVE_INFINITY));
 		}
 
-		vertexInfoMap.get(source).distance = 0; // The weight is zero at the source
+		vertexInfoMap.get(source).setDistance(0); // The weight is zero at the source
 
 		// Step 2: relax edges repeatedly
 		for (int i = 1; i < g.getVertexNumber(); i++) {
@@ -136,8 +137,8 @@ public class GraphConnectivity {
 						aux = u.getV1();
 					}
 					
-					if (vertexInfoMap.get(aux).distance + 1 < vertexInfoMap.get(v).distance) {
-						vertexInfoMap.get(v).distance = vertexInfoMap.get(aux).distance + 1;
+					if (vertexInfoMap.get(aux).getDistance() + 1 < vertexInfoMap.get(v).getDistance()) {
+						vertexInfoMap.get(v).setDistance(vertexInfoMap.get(aux).getDistance() + 1);
 						vertexInfoMap.get(v).predecessor = aux;
 
 					}

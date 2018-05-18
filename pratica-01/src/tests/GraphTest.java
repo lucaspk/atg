@@ -83,8 +83,8 @@ public class GraphTest {
 	
 	@Test
 	public void testBFS() {
-		//System.out.println(GraphSearcher.bfs(g, 1));
-		//System.out.println(GraphSearcher.bfs(weightedG, 1));
+		GraphSearcher.bfs(g, 1);
+		GraphSearcher.bfs(weightedG, 1);
 	}
 	
 	@Test
@@ -112,22 +112,19 @@ public class GraphTest {
 	public void testMST() {
 		Assert.assertEquals(GraphTree.mst(g), "1 - 0 -\n" + 
 				"2 - 1 1\n" + 
-				"5 - 1 1\n" + 
 				"3 - 2 5\n" + 
-				"4 - 2 5\n" + 
-				"");
-		Assert.assertEquals(GraphTree.mst(weightedG), "3 - 0 -\n" + 
+				"4 - 2 5\n" +
+				"5 - 1 1");
+		Assert.assertEquals(GraphTree.mst(weightedG), "1 - 4 2\n" +
+				"2 - 3 5\n" +
+				"3 - 0 -\n" +
 				"4 - 1 3\n" + 
-				"5 - 2 4\n" + 
-				"2 - 3 5\n" + 
-				"1 - 4 2\n" + 
-				"");
-		Assert.assertEquals(GraphTree.mst(weightedG2), "4 - 0 -\n" + 
-				"5 - 1 4\n" + 
+				"5 - 2 4");
+		Assert.assertEquals(GraphTree.mst(weightedG2), "1 - 3 2\n" + 
 				"2 - 2 5\n" + 
 				"3 - 2 5\n" + 
-				"1 - 3 2\n" + 
-				"");
+				"4 - 0 -\n" +
+				"5 - 1 4");
 	}
 	
 }

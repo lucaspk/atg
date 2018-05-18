@@ -9,8 +9,14 @@ import java.util.Set;
 public class GraphTree {
 
 	public static String mst(Graph graph) {
-		//falta checar se é conectado antes de executar 'connected(graph)'
-		
+		if (GraphConnectivity.isConnected(graph)) {
+			return mstAlgorithm(graph);
+		}
+		return "Grafo desconctado";
+	}
+	
+	private static String mstAlgorithm(Graph graph) {
+
 		Graph resultGraph = new Graph();
 		
 		Map<Integer, Set<Edge>> nodeMap = new HashMap<Integer, Set<Edge>>();
