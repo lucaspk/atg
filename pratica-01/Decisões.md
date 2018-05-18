@@ -22,33 +22,31 @@ Foi seguido o Princípio de Responsabilidade Única que, segundo Robert C. Marti
 ### Entidades criadas
 
 Classe Edge:
-- Abstração, nesse caso, um POJO - Plain Old Java Object - que tende a seguir o padrão JavaBean(não há nada de especial além dos getters e setters) para representar uma aresta em um grafo. Ela é útil para abstrairmos a lógica de fornecimento dos vértices que compõe determinada aresta. Além disso, torna mais fácil a manipulação em uma estrutura de dados, que no caso será uma ArrayList. Embora pudêssemos cogitar a possibilidade de uma estrutura de dicionário/hash, não seríamos capazes de ter um funcionamento apropriado no caso de um mapeamento chave-valor int->int, já que só podemos ter uma chave para cada número. Dessa forma, como vários vértices podem se relacionar entre si, teríamos que recorrer a um mapeamento chave-valor do tipo int->List<int>, que tornaria mais obscura a lógica da manipulação, além de trazer poucos benefícios práticos. Portanto, foi criado esse objeto.
+- Abstração, nesse caso, um POJO - Plain Old Java Object - que tende a seguir o padrão JavaBean(não há nada de especial além dos getters e setters) para representar uma aresta em um grafo. Ela é útil para abstrairmos a lógica de fornecimento dos vértices que compõe determinada aresta. Além disso, torna mais fácil a manipulação em uma estrutura de dados.
 
 Classe Graph:
 - Abstração para representar um grafo.
 
 Classe RawGraph:
-- Abstração para representar um grafo em seu estado bruto, ou seja, logo após ter sido lido do arquivo.
+- Abstração para representar um grafo em seu estado bruto, ou seja, logo após ter sido lido do arquivo. Ele vai servir para encapsular a criação de um grafo tendo em vista que o que temos no início é uma lista de strings. Como estamos preocupados com o princípio da responsabilidade única, uma classe deve fazer apenas uma coisa. Ou seja, a leitura é diferente do processamento do que foi lido. Por essa razão, RawGraph foi criado.
 
 Classe GraphReader:
 - Abstração para lidar com a leitura de um grafo a partir de um arquivo.
 
 Classe GraphCreator:
-- Abstração para lidar com a criação de um grafo a partir do que foi lido do arquivo. 
+- Abstração para lidar com a criação de um grafo a partir do que foi lido do arquivo tomando como base o processamento da classe RawGraph. 
 
 Classe GraphFomatter:
-- Abstração para formatar a representação do grafo. Por exemplo, representar grafo como uma lista de adjacência ou matriz de adjacência seria tarefa dessa classe. Quem precisasse desse formato bastaria chamar o grafo;
+- Abstração para formatar a representação do grafo. Por exemplo, representar grafo como uma lista de adjacência ou matriz de adjacência seria tarefa dessa classe. 
 
-- Todos os algoritmos que precisam do grafo em um formato específico usarão essa classe como provedora;
+Classe GraphSearcher: 
+- Todos os algoritmos de busca e percurso em um grafo serão implementados aqui, por partilharem da característica de percurso pelos vértices e arestas.
 
-- Contribui para a coesão da leitura, pré-processamento e manipulação do grafo nos algoritmos.
+GraphConnectivity: 
+- Todos os algoritmos referentes à conectividade serão implementados aqui(connected e shortestpath).
 
-Classe GraphOperator:
-- Superclasse abstrata que servirá como abstração para os algoritmos em um grafo;
+GraphTree: 
+- Todos os algoritmos relativos às árvores (grafo acíclico e conectado) serão colocados aqui. Essa subclasse possui potencial para muitas outras subclasses, já que existem dezenas de tipos de árvores diferentes. Porém, para o escopo do problema em tela, abrigará apenas MST(Minning Spinning Tree). 
 
-- Terá como subclasses as seguintes:
-    - GraphSearcher: todos os algoritmos de busca e percurso em um grafo serão implementados aqui, por partilharem da característica de percurso pelos vértices e arestas;
-
-    - GraphConnectivity: todos os algoritmos referentes à conectividade serão implementados aqui;
-    
-    - GraphTree: todos os algoritmos relativos às árvores (grafo acíclico e conectado) serão colocados aqui. Essa subclasse possui potencial para muitas outras subclasses, já que existem dezenas de tipos de árvores diferentes. Porém, para o escopo do problema em tela, não há necessidade disso. 
+VertexInfo:
+- Abstração para representar o predecessor e a distância de modo a tornar possível o algoritmo de MST.
