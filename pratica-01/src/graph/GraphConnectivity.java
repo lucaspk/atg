@@ -51,6 +51,7 @@ public class GraphConnectivity {
 
 		// Step 1: initialize graph
 		Map<Integer, VertexInfo> vertexInfoMap = new TreeMap<>();
+		
 		for (Integer v : g.getNodeMap().keySet()) {
 			vertexInfoMap.put(v, new VertexInfo(null, Float.POSITIVE_INFINITY));
 		}
@@ -67,9 +68,23 @@ public class GraphConnectivity {
 					} else {
 						aux = u.getV1();
 					}
+					
 					if (vertexInfoMap.get(aux).distance + 1 < vertexInfoMap.get(v).distance) {
-						vertexInfoMap.get(v).distance = vertexInfoMap.get(u).distance + 1;
+						vertexInfoMap.get(v).distance = vertexInfoMap.get(aux).distance + 1;
 						vertexInfoMap.get(v).predecessor = aux;
+
+					}
+				}
+			}
+		}
+		
+        
+        // Step 3: check for negative-weight cycles
+		if (g.isWeighted()) {
+			for (Integer v : g.getNodeMap().keySet()) {
+				for (Edge e : g.getNodeMap().get(v)) {
+					if (vertexInfoMap.get(e.getV1()).distance + e.getWeight() < vertexInfoMap.get(v).distance) {
+						return result + "O grafo contém um ciclo de pesos negativos.";
 					}
 				}
 			}

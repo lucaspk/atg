@@ -54,6 +54,17 @@ public class Edge implements Comparable {
         }
     }
 	
+    public int compareTo2(Object o) {
+        Edge edge = (Edge) o;
+        if (this.weight > edge.getWeight()) {
+        	return 1;
+        } else if (this.weight < edge.getWeight()) {
+        	return -1;
+        } else {
+        	return 0;
+        }
+    }
+	
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,7 +72,7 @@ public class Edge implements Comparable {
 
         Edge edge = (Edge) o;
 
-        return v1.equals(edge.getV1());
+        return v1.equals(edge.getV1()) && v2.equals(edge.getV2()) && weight.equals(edge.getWeight());
     }
 
 	@Override
