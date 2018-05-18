@@ -1,26 +1,26 @@
 package graph;
 
-public class Edge {
-	private int v1;
-	private int v2;
-	private float weight;
+public class Edge implements Comparable {
+	private Integer v1;
+	private Integer v2;
+	private Double weight;
 	
-	public Edge(final int v1, final int v2) {
+	public Edge(final Integer v1, final Integer v2) {
 		this.v1 = v1;
 		this.v2 = v2;
 	}
 
-	public Edge(final int v1, final int v2, float weight) {
+	public Edge(final Integer v1, final Integer v2, Double weight) {
 		this.v1 = v1;
 		this.v2 = v2;
 		this.weight = weight;
 	}
 
-	public int getV1() {
+	public Integer getV1() {
 		return v1;
 	}
 
-	public int getV2() {
+	public Integer getV2() {
 		return v2;
 	}
 	
@@ -32,13 +32,48 @@ public class Edge {
 		this.v2 = v2;
 	}
 
-	public float getWeight() {
+	public Double getWeight() {
 		return weight;
 	}
 
-	public void setWeight(float weight) {
+	public boolean isLoop() {
+		return v1 == v2;
+	}
+	
+	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
+		
+	@Override
+    public int compareTo(Object o) {
+        Edge edge = (Edge) o;
+        if (v1.equals(edge.getV1()) && v2.equals(edge.getV2())) {
+        	return 0;
+        } else {
+        	return 1;
+        }
+    }
+	
+    public int compareTo2(Object o) {
+        Edge edge = (Edge) o;
+        if (this.weight > edge.getWeight()) {
+        	return 1;
+        } else if (this.weight < edge.getWeight()) {
+        	return -1;
+        } else {
+        	return 0;
+        }
+    }
+	
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edge edge = (Edge) o;
+
+        return v1.equals(edge.getV1()) && v2.equals(edge.getV2()) && weight.equals(edge.getWeight());
+    }
 
 	@Override
 	public String toString() {

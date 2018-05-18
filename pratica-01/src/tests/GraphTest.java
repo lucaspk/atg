@@ -18,8 +18,8 @@ public class GraphTest {
 	@Before
 	public void setUp() throws IOException {	
 		g = GraphCreator.createGraph(file);
-		weightedG = GraphCreator.createWeightedGraph(file2);
-		weightedG2 = GraphCreator.createWeightedGraph(file3);
+		weightedG = GraphCreator.createGraph(file2);
+		weightedG2 = GraphCreator.createGraph(file3);
 	}
 
 	@Test
@@ -31,21 +31,21 @@ public class GraphTest {
 
 	@Test
 	public void testAdjacencyMatrix() {
-		String expectedOutput = " 1 2 3 4 5\n1 0 1 0 0 1\n2 1 0 0 0 1\n3 0 0 0 0 1\n4 0 0 0 0 1\n5 1 1 1 1 0";
+		String expectedOutput = "  1 2 3 4 5\n1 0 1 0 0 1\n2 1 0 0 0 1\n3 0 0 0 0 1\n4 0 0 0 0 1\n5 1 1 1 1 0";
 
 		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(g));
 	}
 
 	@Test
 	public void testWeightedAdjacencyList() {
-		String expectedOutput = "1 - 2(0.1) 5(1)\n2 - 1(0.1) 5(0.2)\n3 - 4(-9.5) 5(5)\n4 - 3(-9.5) 5(2.3)\n5 - 1(1) 2(0.2) 3(5) 4(2.3)";
+		String expectedOutput = "1 - 2(0,1) 5(1)\n2 - 1(0,1) 5(0,2)\n3 - 4(-9,5) 5(5)\n4 - 3(-9,5) 5(2,3)\n5 - 1(1) 2(0,2) 3(5) 4(2,3)";
 
 		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(weightedG));
 	}
 
 	@Test
 	public void testWeightedAdjacencyMatrix() {
-		String expectedOutput = " 1 2 3 4 5\n1 0 0.1 0 0 1\n2 0.1 0 0 0 0.2\n3 0 0 0 -9.5 5\n4 0 0 -9.5 0 2.3\n5 1 0.2 5 2.3 0";
+		String expectedOutput = "  1 2 3 4 5\n1 0 0,1 0 0 1\n2 0,1 0 0 0 0,2\n3 0 0 0 -9,5 5\n4 0 0 -9,5 0 2,3\n5 1 0,2 5 2,3 0";
 
 		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(weightedG));
 	}
@@ -54,28 +54,21 @@ public class GraphTest {
 	public void testWeightedShortestPathWithNegativeCicle() {
 		String expectedOutput = "O grafo contém um ciclo de pesos negativos.";
 
-		Assert.assertEquals(expectedOutput, weightedG.getShortestPath(1, 5));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG, 1, 5));
 	}
 
 	@Test
 	public void testWeightedShortestPath() {
 		String expectedOutput = "1 2 5";
 
-		Assert.assertEquals(expectedOutput, weightedG2.getShortestPath(1, 5));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG2, 1, 5));
 	}
 
 	@Test
 	public void testUnweightedShortestPath() {
 		String expectedOutput = "1 5";
 
-		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 5));
-	}
-
-	@Test
-	public void testUnweightedShortestPath2() {
-		String expectedOutput = "1 5 3";
-
-		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 3));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathUnweighted(g, 1, 5));
 	}
 
 	@Test
@@ -86,6 +79,55 @@ public class GraphTest {
 	@Test
 	public void testGetEdgeNumber() {
 		Assert.assertEquals(5, g.getEdgeNumber());
+	}
+	
+	@Test
+	public void testBFS() {
+		//System.out.println(GraphSearcher.bfs(g, 1));
+		//System.out.println(GraphSearcher.bfs(weightedG, 1));
+	}
+	
+	@Test
+	public void testDFS() {
+		String expectedOutput = "1 - - 02 - 1 15 - 2 23 - 5 34 - 5 3";
+		
+		Integer firstVertex = 1;
+		String dfsOutput = GraphSearcher.dfs(g, firstVertex);
+		
+		StringBuilder output = new StringBuilder();
+    	for (String string : dfsOutput.split("\n")) {
+			output.append(string.trim());
+		}
+		Assert.assertEquals(expectedOutput, output.toString());
+	}
+
+	@Test
+	public void testConnectivity(){
+		Assert.assertEquals(true, GraphConnectivity.isConnected(g));
+		Assert.assertEquals(true, GraphConnectivity.isConnected(weightedG));
+		Assert.assertEquals(true, GraphConnectivity.isConnected(weightedG2));
+	}
+	
+	@Test
+	public void testMST() {
+		Assert.assertEquals(GraphTree.mst(g), "1 - 0 -\n" + 
+				"2 - 1 1\n" + 
+				"5 - 1 1\n" + 
+				"3 - 2 5\n" + 
+				"4 - 2 5\n" + 
+				"");
+		Assert.assertEquals(GraphTree.mst(weightedG), "3 - 0 -\n" + 
+				"4 - 1 3\n" + 
+				"5 - 2 4\n" + 
+				"2 - 3 5\n" + 
+				"1 - 4 2\n" + 
+				"");
+		Assert.assertEquals(GraphTree.mst(weightedG2), "4 - 0 -\n" + 
+				"5 - 1 4\n" + 
+				"2 - 2 5\n" + 
+				"3 - 2 5\n" + 
+				"1 - 3 2\n" + 
+				"");
 	}
 	
 }

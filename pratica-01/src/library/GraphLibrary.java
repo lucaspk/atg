@@ -1,52 +1,60 @@
 package library;
 
-import graph.UnweightedGraph;
-import graph.GraphReader;
+import graph.*;
 
 public class GraphLibrary {
-
-	public UnweightedGraph readGraph(String path) {
-		GraphReader graphReader = new GraphReader();
+	
+	public Graph readGraph(String path) {
 		return null;
 	}
 	
-	public UnweightedGraph readWeightedGraph(String path) {
+	public Graph readWeightedGraph(String path) {
 		return null;
 	}
 	
-	public int getVertexNumber(UnweightedGraph graph) {
+	public int getVertexNumber(Graph graph) {
 		return graph.getVertexNumber();
 	}
 	
-	public int getEdgeNumber(UnweightedGraph graph) {
+	public int getEdgeNumber(Graph graph) {
 		return graph.getEdgeNumber();
 	}
 	
-	public float getMeanEdge(UnweightedGraph graph) {
-		return 0;
+	public float getMeanEdge(Graph graph) {
+		return graph.getMeanEdge();
 	}
 	
-	public String graphRepresentation(UnweightedGraph graph, String type) {
-		return "";
+	public String graphRepresentation(Graph graph, String type) {
+		String result;
+		if (type == "AM") {
+			result = GraphFormatter.getAdjacencyMatrix(graph);
+		} else {
+			result = GraphFormatter.getAdjacencyList(graph);
+		}
+		return result;
 	}
 	
-	public String BFS(UnweightedGraph graph, int v) {
-		return "";
+	public String BFS(Graph graph, int v) {
+		return GraphSearcher.bfs(graph, v);
 	}
 	
-	public String DFS(UnweightedGraph graph, int v) {
-		return "";
+	public String DFS(Graph graph, int v) {
+		return GraphSearcher.dfs(graph, v);
 	}
 	
-	public boolean connected(UnweightedGraph graph) {
-		return true;
+	public boolean connected(Graph graph) {
+		return GraphConnectivity.isConnected(graph);
 	}
 
-	public String shortestPath(UnweightedGraph graph, int v1, int v2) {
-		return "";
+	public String shortestPath(Graph graph, int v1, int v2) {
+		if (graph.isWeighted()) {
+			return GraphConnectivity.getShortestPathWeighted(graph, v1, v2);
+		}
+		return GraphConnectivity.getShortestPathUnweighted(graph, v1, v2);
+
 	}
 	
-	public String mst(UnweightedGraph graph) {
+	public String mst(Graph graph) {
 		return "";
 	}
 	
