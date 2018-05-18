@@ -1,9 +1,6 @@
 package library;
 
-import graph.UnweightedGraph;
-import graph.Graph;
-import graph.GraphReader;
-import graph.GraphSearcher;
+import graph.*;
 
 public class GraphLibrary {
 	
@@ -40,7 +37,7 @@ public class GraphLibrary {
 	}
 	
 	public boolean connected(Graph graph) {
-		return true;
+		return GraphConnectivity.isConnected(graph);
 	}
 
 	public String shortestPath(Graph graph, int v1, int v2) {
