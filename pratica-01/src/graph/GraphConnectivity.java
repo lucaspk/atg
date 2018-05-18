@@ -42,44 +42,24 @@ public class GraphConnectivity {
 	public static String getShortestPathWeighted(Graph g, Integer source, Integer dest) {
 
 		String result = "";
-
-		// This implementation takes in a graph, represented as
-		// lists of vertices and edges, and fills two arrays
-		// (distance and predecessor) with shortest-path
-		// (less cost/distance/metric) information
-
-		// Step 1: initialize graph
 		Map<Integer, VertexInfo> vertexInfoMap = new TreeMap<>();
 
 		for (Integer v : g.getNodeMap().keySet()) {
 			vertexInfoMap.put(v, new VertexInfo(null, Double.POSITIVE_INFINITY));
 		}
 
-		vertexInfoMap.get(source).setDistance(0.0); // The weight is zero at the source
+		vertexInfoMap.get(source).setDistance(0.0); 
 
-		// Step 2: relax edges repeatedly
 			for (int i = 1; i < g.getVertexNumber(); i++) {
 				for (Integer v : g.getNodeMap().keySet()) {
 					for (Edge u : g.getAdjacents(v)) {
-//						Integer aux;
-//						if (v == u.getV1()) {
-//							aux = u.getV2();
-//						} else {
-//							aux = u.getV1();
-//						}
-//
-//						if (vertexInfoMap.get(aux).distance + 1 < vertexInfoMap.get(v).distance) {
-//							vertexInfoMap.get(v).distance = vertexInfoMap.get(aux).distance + 1;
-//							vertexInfoMap.get(v).predecessor = aux;
-//
-//						}
+						
 						relax(u.getV1(), u.getV2(), u.getWeight(), vertexInfoMap);
 						relax(u.getV2(), u.getV1(), u.getWeight(), vertexInfoMap);
 
 					}
 				}
 			}
-//		// Step 3: check for negative-weight cycles
 		if (g.isWeighted()) {
 			for (Integer v : g.getNodeMap().keySet()) {
 				for (Edge e : g.getNodeMap().get(v)) {
@@ -90,7 +70,6 @@ public class GraphConnectivity {
 			}
 		}
 
-		// Build result
 		Integer currentVertex = dest;
 		ArrayList<Integer> out = new ArrayList<>();
 		while (currentVertex != null) {
@@ -112,21 +91,14 @@ public class GraphConnectivity {
 
 		String result = "";
 
-		// This implementation takes in a graph, represented as
-		// lists of vertices and edges, and fills two arrays
-		// (distance and predecessor) with shortest-path
-		// (less cost/distance/metric) information
-
-		// Step 1: initialize graph
 		Map<Integer, VertexInfo> vertexInfoMap = new TreeMap<>();
 		
 		for (Integer v : g.getNodeMap().keySet()) {
 			vertexInfoMap.put(v, new VertexInfo(null, Float.POSITIVE_INFINITY));
 		}
 
-		vertexInfoMap.get(source).setDistance(0); // The weight is zero at the source
+		vertexInfoMap.get(source).setDistance(0); 
 
-		// Step 2: relax edges repeatedly
 		for (int i = 1; i < g.getVertexNumber(); i++) {
 			for (Integer v : g.getNodeMap().keySet()) {
 				for (Edge u : g.getAdjacents(v)) {
@@ -146,7 +118,6 @@ public class GraphConnectivity {
 			}
 		}
 
-		// Build result
 		Integer currentVertex = dest;
 		ArrayList<Integer> out = new ArrayList<>();
 		while (currentVertex != null) {

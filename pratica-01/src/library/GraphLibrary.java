@@ -5,11 +5,11 @@ import graph.*;
 public class GraphLibrary {
 	
 	public Graph readGraph(String path) {
-		return null;
+		return GraphCreator.createGraph(path);
 	}
 	
 	public Graph readWeightedGraph(String path) {
-		return null;
+		return GraphCreator.createGraph(path);
 	}
 	
 	public int getVertexNumber(Graph graph) {
@@ -51,11 +51,10 @@ public class GraphLibrary {
 			return GraphConnectivity.getShortestPathWeighted(graph, v1, v2);
 		}
 		return GraphConnectivity.getShortestPathUnweighted(graph, v1, v2);
-
 	}
 	
 	public String mst(Graph graph) {
-		return "";
+		return GraphTree.mst(graph);
 	}
 	
 
