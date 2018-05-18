@@ -21,11 +21,17 @@ public class GraphLibrary {
 	}
 	
 	public float getMeanEdge(Graph graph) {
-		return 0;
+		return graph.getMeanEdge();
 	}
 	
 	public String graphRepresentation(Graph graph, String type) {
-		return "";
+		String result;
+		if (type == "AM") {
+			result = GraphFormatter.getAdjacencyMatrix(graph);
+		} else {
+			result = GraphFormatter.getAdjacencyList(graph);
+		}
+		return result;
 	}
 	
 	public String BFS(Graph graph, int v) {
@@ -41,7 +47,7 @@ public class GraphLibrary {
 	}
 
 	public String shortestPath(Graph graph, int v1, int v2) {
-		return "";
+		return GraphConnectivity.getShortestPath(graph, v1, v2);
 	}
 	
 	public String mst(Graph graph) {

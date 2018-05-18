@@ -68,7 +68,7 @@ public class GraphTest {
 	public void testUnweightedShortestPath() {
 		String expectedOutput = "1 5";
 
-		Assert.assertEquals(expectedOutput, g.getShortestPath(1, 5));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPath(g, 1, 5));
 	}
 
 	@Test
@@ -83,12 +83,12 @@ public class GraphTest {
 	
 	@Test
 	public void testBFS() {
-		System.out.println(GraphSearcher.bfs(g, 1));
+		//System.out.println(GraphSearcher.bfs(g, 1));
 	}
 	
 	@Test
 	public void testDFS() {
-		System.out.println(GraphSearcher.dfs(g, 1));
+		//System.out.println(GraphSearcher.dfs(g, 1));
 	}
 
 	@Test

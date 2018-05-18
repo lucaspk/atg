@@ -35,7 +35,7 @@ public class Graph {
 		}
 
 		public float getMeanEdge() {
-			return 0;
+			return (2 * this.getEdgeNumber()) / this.getVertexNumber();
 		}
 
 		Integer getAVertex(){

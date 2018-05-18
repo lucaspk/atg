@@ -33,8 +33,4 @@ public class GraphCreator {
 		
 		return graph;
 	}
-	public static void main(String[] args) {
-		Graph g = GraphCreator.createGraph("src/sample_graph.txt");
-		System.out.println(g.getEdgeNumber());
-	}
 }
