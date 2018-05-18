@@ -4,12 +4,15 @@ import java.util.*;
 public class Graph {
 		
 		private Map<Integer, Set<Edge>> nodeMap;
+		private boolean isWeighted;
 		
 		public Graph() {
+			isWeighted = false;
 			nodeMap = new TreeMap<>();
 		}
 
 		public void addEdge(Integer vertex, Edge edge) {
+			this.isWeighted = true;
 			if (nodeMap.containsKey(vertex)) {
 				nodeMap.get(vertex).add(edge);
 			} else {
@@ -19,28 +22,20 @@ public class Graph {
 			}
 		}
 		
+		public Map<Integer, Set<Edge>> getNodeMap() {
+			return nodeMap;
+		}
+		
 		public int getVertexNumber() {
 			return nodeMap.keySet().size();
 		}
-
 		
 		public int getEdgeNumber() {
 			return nodeMap.values().size();
 		}
 
-		
 		public float getMeanEdge() {
 			return 0;
-		}
-
-		
-		public String getAdjacencyList() {
-			return "";
-		}
-
-		public String getAdjacencyMatrix() {
-			return "";
-
 		}
 
 		public Set<Edge> getAdjacents(Integer v) {
@@ -49,6 +44,10 @@ public class Graph {
 
 		public String getShortestPath(Integer source, Integer dest) {
 			return "";
+		}
+		
+		public boolean getIsWeighted() {
+			return isWeighted;
 		}
 }
 

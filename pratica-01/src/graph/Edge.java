@@ -36,10 +36,14 @@ public class Edge implements Comparable {
 		return weight;
 	}
 
+	public boolean isLoop() {
+		return v1 == v2;
+	}
+	
 	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
-	
+		
 	@Override
     public int compareTo(Object o) {
         Edge edge = (Edge) o;
