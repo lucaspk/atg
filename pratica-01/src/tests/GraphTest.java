@@ -31,9 +31,9 @@ public class GraphTest {
 
 	@Test
 	public void testAdjacencyMatrix() {
-		String expectedOutput = " 1 2 3 4 5\n1 0 1 0 0 1\n2 1 0 0 0 1\n3 0 0 0 0 1\n4 0 0 0 0 1\n5 1 1 1 1 0";
+		String expectedOutput = "  1 2 3 4 5\n1 0 1 0 0 1\n2 1 0 0 0 1\n3 0 0 0 0 1\n4 0 0 0 0 1\n5 1 1 1 1 0";
 
-		//Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(g));
+		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(g));
 	}
 
 	@Test
@@ -45,9 +45,9 @@ public class GraphTest {
 
 	@Test
 	public void testWeightedAdjacencyMatrix() {
-		String expectedOutput = " 1 2 3 4 5\n1 0 0,1 0 0 1\n2 0,1 0 0 0 0,2\n3 0 0 0 -9,5 5\n4 0 0 -9,5 0 2,3\n5 1 0,2 5 2,3 0";
+		String expectedOutput = "  1 2 3 4 5\n1 0 0,1 0 0 1\n2 0,1 0 0 0 0,2\n3 0 0 0 -9,5 5\n4 0 0 -9,5 0 2,3\n5 1 0,2 5 2,3 0";
 
-		//Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(weightedG));
+		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(weightedG));
 	}
 
 	@Test
