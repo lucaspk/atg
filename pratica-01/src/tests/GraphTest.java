@@ -54,21 +54,21 @@ public class GraphTest {
 	public void testWeightedShortestPathWithNegativeCicle() {
 		String expectedOutput = "O grafo contém um ciclo de pesos negativos.";
 
-		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPath(weightedG, 1, 5));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG, 1, 5));
 	}
 
 	@Test
 	public void testWeightedShortestPath() {
 		String expectedOutput = "1 2 5";
 
-		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPath(weightedG2, 1, 5));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG2, 1, 5));
 	}
 
 	@Test
 	public void testUnweightedShortestPath() {
 		String expectedOutput = "1 5";
 
-		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPath(g, 1, 5));
+		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathUnweighted(g, 1, 5));
 	}
 
 	@Test
@@ -89,7 +89,16 @@ public class GraphTest {
 	
 	@Test
 	public void testDFS() {
-		//System.out.println(GraphSearcher.dfs(g, 1));
+		String expectedOutput = "1 - - 02 - 1 15 - 2 23 - 5 34 - 5 3";
+		
+		Integer firstVertex = 1;
+		String dfsOutput = GraphSearcher.dfs(g, firstVertex);
+		
+		StringBuilder output = new StringBuilder();
+    	for (String string : dfsOutput.split("\n")) {
+			output.append(string.trim());
+		}
+		Assert.assertEquals(expectedOutput, output.toString());
 	}
 
 	@Test

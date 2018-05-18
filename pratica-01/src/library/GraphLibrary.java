@@ -47,7 +47,11 @@ public class GraphLibrary {
 	}
 
 	public String shortestPath(Graph graph, int v1, int v2) {
-		return GraphConnectivity.getShortestPath(graph, v1, v2);
+		if (graph.isWeighted()) {
+			return GraphConnectivity.getShortestPathWeighted(graph, v1, v2);
+		}
+		return GraphConnectivity.getShortestPathUnweighted(graph, v1, v2);
+
 	}
 	
 	public String mst(Graph graph) {
