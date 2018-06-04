@@ -1,12 +1,10 @@
-package tests;
-
 import java.io.IOException;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 import graph.*;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class GraphTest {
 	
@@ -15,7 +13,7 @@ public class GraphTest {
 	private String file3 = "src/sample_weighted_graph2.txt";
 	private Graph g, weightedG, weightedG2;
 	
-	@Before
+	@BeforeAll
 	public void setUp() throws IOException {	
 		g = GraphCreator.createGraph(file);
 		weightedG = GraphCreator.createGraph(file2);
@@ -25,60 +23,59 @@ public class GraphTest {
 	@Test
 	public void testAdjacencyList() {
 		String expectedOutput = "1 - 2 5\n2 - 1 5\n3 - 5\n4 - 5\n5 - 1 2 3 4";
-
-		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(g));
+		assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(g));
 	}
 
 	@Test
 	public void testAdjacencyMatrix() {
 		String expectedOutput = "  1 2 3 4 5\n1 0 1 0 0 1\n2 1 0 0 0 1\n3 0 0 0 0 1\n4 0 0 0 0 1\n5 1 1 1 1 0";
 
-		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(g));
+		assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(g));
 	}
 
 	@Test
 	public void testWeightedAdjacencyList() {
 		String expectedOutput = "1 - 2(0,1) 5(1)\n2 - 1(0,1) 5(0,2)\n3 - 4(-9,5) 5(5)\n4 - 3(-9,5) 5(2,3)\n5 - 1(1) 2(0,2) 3(5) 4(2,3)";
 
-		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(weightedG));
+		assertEquals(expectedOutput, GraphFormatter.getAdjacencyList(weightedG));
 	}
 
 	@Test
 	public void testWeightedAdjacencyMatrix() {
 		String expectedOutput = "  1 2 3 4 5\n1 0 0,1 0 0 1\n2 0,1 0 0 0 0,2\n3 0 0 0 -9,5 5\n4 0 0 -9,5 0 2,3\n5 1 0,2 5 2,3 0";
 
-		Assert.assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(weightedG));
+		assertEquals(expectedOutput, GraphFormatter.getAdjacencyMatrix(weightedG));
 	}
 
 	@Test
 	public void testWeightedShortestPathWithNegativeCicle() {
 		String expectedOutput = "O grafo contém um ciclo de pesos negativos.";
 
-		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG, 1, 5));
+		assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG, 1, 5));
 	}
 
 	@Test
 	public void testWeightedShortestPath() {
 		String expectedOutput = "1 2 5";
 
-		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG2, 1, 5));
+		assertEquals(expectedOutput, GraphConnectivity.getShortestPathWeighted(weightedG2, 1, 5));
 	}
 
 	@Test
 	public void testUnweightedShortestPath() {
 		String expectedOutput = "1 5";
 
-		Assert.assertEquals(expectedOutput, GraphConnectivity.getShortestPathUnweighted(g, 1, 5));
+		assertEquals(expectedOutput, GraphConnectivity.getShortestPathUnweighted(g, 1, 5));
 	}
 
 	@Test
 	public void testGetVertexNumber() {
-		Assert.assertEquals(5, g.getVertexNumber());
+		assertEquals(5, g.getVertexNumber());
 	}
 
 	@Test
 	public void testGetEdgeNumber() {
-		Assert.assertEquals(5, g.getEdgeNumber());
+		assertEquals(5, g.getEdgeNumber());
 	}
 	
 	@Test
@@ -98,29 +95,29 @@ public class GraphTest {
     	for (String string : dfsOutput.split("\n")) {
 			output.append(string.trim());
 		}
-		Assert.assertEquals(expectedOutput, output.toString());
+		assertEquals(expectedOutput, output.toString());
 	}
 
 	@Test
 	public void testConnectivity(){
-		Assert.assertEquals(true, GraphConnectivity.isConnected(g));
-		Assert.assertEquals(true, GraphConnectivity.isConnected(weightedG));
-		Assert.assertEquals(true, GraphConnectivity.isConnected(weightedG2));
+		assertEquals(true, GraphConnectivity.isConnected(g));
+		assertEquals(true, GraphConnectivity.isConnected(weightedG));
+		assertEquals(true, GraphConnectivity.isConnected(weightedG2));
 	}
 	
 	@Test
 	public void testMST() {
-		Assert.assertEquals(GraphTree.mst(g), "1 - 0 -\n" + 
+		assertEquals(GraphTree.mst(g), "1 - 0 -\n" +
 				"2 - 1 1\n" + 
 				"3 - 2 5\n" + 
 				"4 - 2 5\n" +
 				"5 - 1 1");
-		Assert.assertEquals(GraphTree.mst(weightedG), "1 - 4 2\n" +
+		assertEquals(GraphTree.mst(weightedG), "1 - 4 2\n" +
 				"2 - 3 5\n" +
 				"3 - 0 -\n" +
 				"4 - 1 3\n" + 
 				"5 - 2 4");
-		Assert.assertEquals(GraphTree.mst(weightedG2), "1 - 3 2\n" + 
+		assertEquals(GraphTree.mst(weightedG2), "1 - 3 2\n" +
 				"2 - 2 5\n" + 
 				"3 - 2 5\n" + 
 				"4 - 0 -\n" +
