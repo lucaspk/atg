@@ -3,7 +3,7 @@ import java.io.IOException;
 
 import graph.*;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class GraphTest {
@@ -13,8 +13,8 @@ public class GraphTest {
 	private String file3 = "src/sample_weighted_graph2.txt";
 	private Graph g, weightedG, weightedG2;
 	
-	@BeforeAll
-	public void setUp() throws IOException {	
+	@BeforeEach
+	public void setUp() throws IOException {
 		g = GraphCreator.createGraph(file);
 		weightedG = GraphCreator.createGraph(file2);
 		weightedG2 = GraphCreator.createGraph(file3);

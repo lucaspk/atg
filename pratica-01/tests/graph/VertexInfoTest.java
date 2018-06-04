@@ -14,7 +14,4 @@ class VertexInfoTest {
     void setDistance() {
     }
 
-    @Test
-    void toString() {
-    }
 }
