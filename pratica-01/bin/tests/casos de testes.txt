@@ -1,9 +1,0 @@
-
-# Casos de teste
--- Classe GraphReader:
-.0 vértices -> tentar passar número de arestas -> lançar exceção
-.número vértices negativo -> lançar exceção
-.passar variedade de vértices maior do que o número de vértices. Exemplo: 3 vértices e passo 4 tipos nas aretas -> exceção
-.testar com aresta repetida -> tratar isso
-.1 vértice -> só pode dele para ele mesmo
-.testes quando número de vértices é adequado
