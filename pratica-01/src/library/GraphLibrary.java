@@ -54,6 +54,7 @@ public class GraphLibrary {
 	}
 	
 	public String mst(Graph graph) {
+		System.out.println(GraphTree.mst(graph));
 		return GraphTree.mst(graph);
 	}
 	
