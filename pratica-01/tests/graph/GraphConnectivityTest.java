@@ -19,11 +19,23 @@ class GraphConnectivityTest {
 	private String file5 = "src/bigGraph2.txt";
 	// grafo grande com pesos positivos
 	private String file6 = "src/bigGraph3.txt";
+	
+	// grafo conectado
+	private String file7 = "src/graphNotConnected.txt";
+	// grafo não conectado
+	private String file8 = "src/graphConnected.txt";
+	
+
 
 	private Graph graph1, graph2, graph3, graph4, graph5, graph6;
 
 	@Test
 	void isConnected() {
+		graph1 = GraphCreator.createGraph(file7);
+		graph2 = GraphCreator.createGraph(file8);
+		assertEquals(false, GraphConnectivity.isConnected(graph1));
+		assertEquals(true, GraphConnectivity.isConnected(graph2));
+		
 	}
 
 	@Test
